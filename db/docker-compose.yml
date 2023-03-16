@@ -24,4 +24,11 @@ services:
         ports:
             - "5050:80"
 
+    jira-client:
+        container_name: jira-client
+        build: ./jira
+        volumes:
+            - "./jira:/app"
+        ports:
+            - "4200:4200"
         

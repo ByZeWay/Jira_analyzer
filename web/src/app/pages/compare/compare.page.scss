@@ -1,0 +1,13 @@
+@use "../../../styles.scss" as s;
+.container {
+  padding: 50px;
+  text-align: center;
+  @include s.dflex(column, space-between);
+  gap: 50px;
+}
+.checkbox-group {
+  @include s.glassmorph;
+  @include s.dflex(column, space-between, flex-start);
+  padding: 50px 100px;
+  gap: 15px;
+}

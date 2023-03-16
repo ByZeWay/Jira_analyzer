@@ -1,0 +1,41 @@
+@use "../../../../../styles.scss" as s;
+.table {
+  width: 100%;
+  @include s.glassmorph;
+  padding: 10px 30px;
+  font-weight: 400;
+}
+.table_header {
+  width: 100%;
+
+  @include s.dflex(row, space-between, center);
+}
+.table_body {
+  width: 100%;
+
+  @include s.dflex(column, space-between, center);
+}
+.table_item {
+  width: 100%;
+  @include s.dflex(row, space-between, center);
+  p {
+    font-weight: initial;
+  }
+}
+th {
+  width: 100%;
+}
+tr {
+  margin: 10px 0;
+}
+.my-pagination ::ng-deep .ngx-pagination a {
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: white;
+}
+.my-pagination ::ng-deep .ngx-pagination a:hover {
+  @include s.glassmorph(0.5);
+}
+.my-pagination ::ng-deep .ngx-pagination .current {
+  @include s.glassmorph;
+}

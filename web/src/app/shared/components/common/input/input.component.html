@@ -1,0 +1,6 @@
+<div>
+  <input type="text" [formControl]="searchControl" placeholder="Search" />
+  <button *ngIf="searchControl.value" aria-label="Clear" (click)="clear()">
+    X
+  </button>
+</div>

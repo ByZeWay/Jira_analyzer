@@ -1,0 +1,101 @@
+body {
+  font-family: "Work Sans", sans-serif;
+  font-size: 14px;
+  /*   background-size: 100% 100%;
+  background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+  background-image: radial-gradient(
+      49% 81% at 45% 47%,
+      #00ffb545 0%,
+      #00010000 100%
+    ),
+    radial-gradient(113% 91% at 17% -2%, #2c08ffff 1%, #ff000000 99%),
+    radial-gradient(142% 91% at 83% 7%, #18ffffff 1%, #3652e900 99%),
+    radial-gradient(142% 91% at -6% 74%, #030725ff 1%, #ff000000 99%),
+    radial-gradient(142% 91% at 111% 84%, #111112e8 0%, #085ad4ff 100%); */
+  /*   background-image: linear-gradient(
+    to right top,
+    #051937,
+    #1b3362,
+    #344f90,
+    #516cc1,
+    #718af4
+  ); */
+  background-image: linear-gradient(
+    to right top,
+    #57575a,
+    #62637e,
+    #6a70a4,
+    #6f7dcb,
+    #718af4
+  );
+  min-height: 100vh;
+  width: 100vw;
+  /*   background: rgb(40, 54, 70);
+  background: radial-gradient(
+    circle,
+    rgba(40, 54, 70, 1) 0%,
+    rgba(0, 0, 0, 1) 100%
+  ); */
+  color: #fff;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+}
+* {
+  box-sizing: border-box;
+}
+hr {
+  color: #fff;
+}
+a,
+a:visited,
+a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #eae9e9;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+}
+
+@mixin dflex($direction: row, $justCont: center, $aligItems: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justCont;
+  align-items: $aligItems;
+}
+@mixin glassmorph($light: 0.25) {
+  background: rgba(255, 255, 255, $light);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+@mixin glassmorph_light {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+button {
+  padding: 10px 30px;
+  color: white;
+  outline: none;
+  background: transparent;
+  border: 1px solid #fff;
+}
+
+button:hover {
+  border: 1px solid #eae9e9;
+  color: #eae9e9;
+}

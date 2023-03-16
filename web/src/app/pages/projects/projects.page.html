@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>projects works!</h1>
+  <app-table
+    [collection]="projResponse.data"
+    [pageInfo]="projResponse.pageInfo"
+    (pageChange)="pageChanged($event)"
+    (itemExistenceClick)="itemExistenceClicked($event)"
+  ></app-table>
+</div>
