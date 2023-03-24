@@ -17,7 +17,9 @@
 }
 .dropdown {
   position: absolute;
-  left: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
   top: 20px;
   text-align: start;
   padding: 0;

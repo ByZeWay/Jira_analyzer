@@ -1,1 +1,9 @@
 @use "../../../styles.scss" as s;
+.container {
+  padding: 20px 0;
+  @include s.dflex(column, center, center);
+  gap: 20px;
+}
+.item {
+  width: 100%;
+}
