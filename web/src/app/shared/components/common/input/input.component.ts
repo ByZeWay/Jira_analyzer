@@ -10,7 +10,7 @@ import { DestroyService } from 'src/app/shared/services/destroy.service';
 })
 export class InputComponent {
   searchControl = new FormControl('');
-  @Output() searchEvent = new EventEmitter<{ query: string }>();
+  @Output() searchEvent = new EventEmitter<{ search: string }>();
   constructor(
     private formBuilder: FormBuilder,
     private destroyService: DestroyService
@@ -19,7 +19,9 @@ export class InputComponent {
     this.searchControl.valueChanges
       .pipe(
         debounceTime(1000),
-        tap((searchText) => this.searchEvent.emit({ query: searchText ?? '' })),
+        tap((searchText) =>
+          this.searchEvent.emit({ search: searchText ?? '' })
+        ),
         takeUntil(this.destroyService.destory$$)
       )
       .subscribe();
