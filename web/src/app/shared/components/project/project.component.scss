@@ -13,11 +13,8 @@
 .tablebar,
 .line {
   width: min(500px, 50%);
-  margin: auto;
 }
-.line {
-  margin: 10px auto;
-}
+
 .tablebar_head {
   width: 100%;
 }
@@ -46,4 +43,15 @@ td {
   text-align: center;
   vertical-align: middle;
   text-align: center;
+}
+
+/* settings */
+.checkbox_table {
+  width: min(500px, 50%);
+}
+.checkbox_group {
+  width: 100%;
+  display: flex;
+  font-size: 11px;
+  padding: 5px 5px;
 }

@@ -11,46 +11,55 @@
   </thead>
 </table>
 <hr class="line" />
+<ng-container *ngIf="!show">
+  <table class="table" border="0" cellspacing="0" cellpadding="0">
+    <tbody class="table_body">
+      <tr class="table_item">
+        <td>Общее количество задач</td>
+        <td>{{ properties.allIssuesCount }}</td>
+      </tr>
+      <tr class="table_item">
+        <td>Количество открытых задач</td>
+        <td>{{ properties.openIssuesCount }}</td>
+      </tr>
+      <tr class="table_item">
+        <td>Количество закрытых задач</td>
+        <td>{{ properties.closeIssuesCount }}</td>
+      </tr>
+      <tr class="table_item">
+        <td>Количество переоткрытых задач</td>
+        <td>{{ properties.reopenedIssuesCount }}</td>
+      </tr>
+      <tr class="table_item">
+        <td>Количество разрешенных задач</td>
+        <td>{{ properties.resolvedIssuesCount }}</td>
+      </tr>
+      <tr class="table_item">
+        <td>Количество задач со статусом "In progress"</td>
+        <td>{{ properties.progressIssuesCount }}</td>
+      </tr>
+      <tr class="table_item">
+        <td>Среднее время выполнения задачи(часы)</td>
+        <td>{{ properties.averageTime }}</td>
+      </tr>
+      <tr class="table_item">
+        <td>Среднее количество заведенных задач в день за последнюю неделю</td>
+        <td>{{ properties.averageIssuesCount }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button>посмотреть</button>
+</ng-container>
 
-<table *ngIf="!show" class="table" border="0" cellspacing="0" cellpadding="0">
-  <tbody class="table_body">
-    <tr class="table_item">
-      <td>Общее количество задач</td>
-      <td>{{ properties.allIssuesCount }}</td>
-    </tr>
-    <tr class="table_item">
-      <td>Количество открытых задач</td>
-      <td>{{ properties.openIssuesCount }}</td>
-    </tr>
-    <tr class="table_item">
-      <td>Количество закрытых задач</td>
-      <td>{{ properties.closeIssuesCount }}</td>
-    </tr>
-    <tr class="table_item">
-      <td>Количество переоткрытых задач</td>
-      <td>{{ properties.reopenedIssuesCount }}</td>
-    </tr>
-    <tr class="table_item">
-      <td>Количество разрешенных задач</td>
-      <td>{{ properties.resolvedIssuesCount }}</td>
-    </tr>
-    <tr class="table_item">
-      <td>Количество задач со статусом "In progress"</td>
-      <td>{{ properties.progressIssuesCount }}</td>
-    </tr>
-    <tr class="table_item">
-      <td>Среднее время выполнения задачи(часы)</td>
-      <td>{{ properties.averageTime }}</td>
-    </tr>
-    <tr class="table_item">
-      <td>Среднее количество заведенных задач в день за последнюю неделю</td>
-      <td>{{ properties.averageIssuesCount }}</td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="table" *ngIf="show">
-  <app-checkbox-label
-    text="гистограмма, отражающая время, которое задачи провери в открытом состоянии"
-  ></app-checkbox-label>
-</table>
+<ng-container *ngIf="show">
+  <table class="table checkbox_table">
+    <ng-container *ngFor="let text of texts">
+      <app-checkbox-label
+        class="checkbox_group"
+        id="{{ text.id }}"
+        text="{{ text.text }}"
+      ></app-checkbox-label>
+    </ng-container>
+  </table>
+  <button>обработать</button>
+</ng-container>
