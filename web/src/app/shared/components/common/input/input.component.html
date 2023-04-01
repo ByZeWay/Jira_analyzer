@@ -1,6 +1,11 @@
-<div>
+<div class="group">
   <input type="text" [formControl]="searchControl" placeholder="Search" />
-  <button *ngIf="searchControl.value" aria-label="Clear" (click)="clear()">
+  <button
+    class="button"
+    [ngStyle]="{ visibility: searchControl.value ? 'initial' : 'hidden' }"
+    aria-label="Clear"
+    (click)="clear()"
+  >
     X
   </button>
 </div>

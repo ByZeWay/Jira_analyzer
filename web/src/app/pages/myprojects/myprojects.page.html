@@ -1,3 +1,7 @@
 <div class="container">
-  <p>myprojects works!</p>
+  <app-project
+    class="item"
+    *ngFor="let project of projects"
+    [properties]="project"
+  ></app-project>
 </div>

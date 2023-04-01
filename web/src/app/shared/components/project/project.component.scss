@@ -1,0 +1,57 @@
+@use "../../../../styles.scss" as s;
+/* table bar */
+.tablebar {
+  th:first-child {
+    width: 50%;
+    text-align: start;
+  }
+  th:last-child {
+    width: 50%;
+    text-align: end;
+  }
+}
+.tablebar,
+.line {
+  width: min(500px, 50%);
+}
+
+.tablebar_head {
+  width: 100%;
+}
+
+/* main table */
+td:first-child {
+  border-right: 1px solid white;
+  width: 65%;
+}
+td:last-child {
+  width: 35%;
+}
+.table {
+  @include s.glassmorph;
+  padding: 10px 0;
+  font-weight: 400;
+  width: min(500px, 50%);
+  margin: auto;
+}
+.table_item {
+  width: 100%;
+}
+td {
+  padding: 10px 10px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* settings */
+.checkbox_table {
+  width: min(500px, 50%);
+}
+.checkbox_group {
+  width: 100%;
+  display: flex;
+  font-size: 11px;
+  padding: 5px 5px;
+}
