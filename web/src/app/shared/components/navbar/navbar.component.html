@@ -1,0 +1,21 @@
+<nav class="navbar">
+  <a class="navbar_item" routerLink="/" routerLinkActive="router-link-active"
+    >all projects</a
+  >
+  <a
+    class="navbar_item"
+    routerLink="/compare"
+    routerLinkActive="router-link-active"
+    >compare</a
+  >
+  <div (click)="showButton = !showButton" class="navbar_item dropdown_relative">
+    my projects
+
+    <div *ngIf="showButton" class="dropdown">
+      <a routerLink="/myprojects" routerLinkActive="router-link-active"
+        >Добавленные проекты</a
+      >
+      <a href="">Сведения о системе</a>
+    </div>
+  </div>
+</nav>

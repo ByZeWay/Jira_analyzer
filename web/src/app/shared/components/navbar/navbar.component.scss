@@ -1,0 +1,31 @@
+@use "../../../../styles.scss" as s;
+
+.navbar {
+  @include s.glassmorph;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20%;
+  align-items: center;
+}
+.navbar_item {
+  width: 100%;
+}
+.dropdown_relative {
+  position: relative;
+}
+.dropdown {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  top: 20px;
+  text-align: start;
+  padding: 0;
+  list-style: none;
+  @include s.glassmorph;
+  padding: 10px;
+  @include s.dflex(column, center, flex-start);
+  gap: 5px;
+}

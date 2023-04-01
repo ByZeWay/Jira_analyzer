@@ -1,0 +1,21 @@
+.group {
+  width: 30%;
+  align-self: flex-end;
+  display: flex;
+  border: 1px solid #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+input {
+  width: 80%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+}
+.button {
+  width: 20%;
+  border: none;
+  padding: 0;
+  border: none;
+}

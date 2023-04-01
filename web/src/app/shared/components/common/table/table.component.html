@@ -1,0 +1,50 @@
+<table class="table">
+  <thead>
+    <tr class="table_header">
+      <th>Name</th>
+      <th>Url</th>
+      <th>Действие</th>
+    </tr>
+  </thead>
+  <hr />
+  <tbody class="table_body">
+    <tr
+      class="table_item"
+      *ngFor="
+        let item of collection
+          | paginate
+            : {
+                itemsPerPage: 10,
+                currentPage: this.pageInfo.currentPage,
+                totalItems: this.pageInfo.projectsCount
+              };
+        let i = index
+      "
+    >
+      <th>
+        <p>{{ item.Name }}</p>
+      </th>
+      <th>
+        <p>{{ item.Url }}</p>
+      </th>
+      <th>
+        <button
+          *ngIf="!item.Existence"
+          (click)="onItemExistenceClick(item.Id, !item.Existence)"
+        >
+          Добавить
+        </button>
+        <button
+          *ngIf="item.Existence"
+          (click)="onItemExistenceClick(item.Id, !item.Existence)"
+        >
+          Удалить
+        </button>
+      </th>
+    </tr>
+  </tbody>
+</table>
+<pagination-controls
+  class="my-pagination"
+  (pageChange)="onPageChange($event)"
+></pagination-controls>
