@@ -3,8 +3,8 @@
   <app-input (searchEvent)="searchChanged($event)"></app-input>
   <app-table
     *ngIf="projResponse"
-    [collection]="projResponse.data"
-    [pageInfo]="projResponse.pageInfo"
+    [collection]="projResponse.Projects"
+    [pageInfo]="projResponse.PageInfo"
     (pageChange)="pageChanged($event)"
     (itemExistenceClick)="itemExistenceClicked($event)"
   ></app-table>

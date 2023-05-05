@@ -45,11 +45,11 @@ export class ProjectsPage implements OnInit, OnDestroy {
     this.getProjects();
   }
   itemExistenceClicked({ id, existence }: { id: number; existence: boolean }) {
-    const newData = this.projResponse.data.map((project: IProject) => {
+    const newData = this.projResponse.Projects.map((project: IProject) => {
       return project.Id === id ? { ...project, Existence: existence } : project;
     });
 
-    this.projResponse.data = newData;
+    this.projResponse.Projects = newData;
   }
 }
 

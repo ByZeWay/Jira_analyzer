@@ -87,7 +87,7 @@ const response = {
   providedIn: 'root',
 })
 export class ProjectsService {
-  baseUrl = 'https://jsonplaceholder.typicode.com/todos';
+  baseUrl = 'http://localhost:8000/allProjects';
   constructor(private http: HttpClient) {}
 
   getProjects({
@@ -102,14 +102,15 @@ export class ProjectsService {
     console.log(limit, page, search);
     return this.http
       .get<any>(
-        `${this.baseUrl}` /* , {
+        `${this.baseUrl}?page=${page}&limit=${limit}&search=${search}`
+        /*`${this.baseUrl}` , {
         params: { limit, page, search },
       } */
       )
       .pipe(
-        map(() => ({
-          ...response,
-          pageInfo: { ...response.pageInfo, currentPage: page },
+        map((data:any) => ({
+          ...data,
+          pageInfo: { ...data.pageInfo, currentPage: page },
         }))
       );
   }

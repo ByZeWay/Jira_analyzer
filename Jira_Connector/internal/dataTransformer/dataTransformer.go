@@ -23,3 +23,13 @@ func IssuesInBytesToStruct(bytes []byte) jsonModels.IssuesSearchResult {
 	}
 	return issues
 }
+
+func ProjectsInStructToBytes(projects []jsonModels.Project) []byte {
+	var bytes []byte
+
+	bytes, err := json.Marshal(projects)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return bytes
+}
