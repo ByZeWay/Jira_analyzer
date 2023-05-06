@@ -1,5 +1,5 @@
 ConnectorSettings:
-  host: "localhost"
+  host: "0.0.0.0"
   port: ":8000"
   jiraURL: "https://issues.apache.org/jira/rest/api/2/"
 
