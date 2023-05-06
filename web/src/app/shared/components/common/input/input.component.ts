@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormBuilder } from '@angular/forms';
 import { debounceTime, tap, takeUntil } from 'rxjs';
 import { DestroyService } from 'src/app/shared/services/destroy.service';
@@ -10,11 +10,9 @@ import { DestroyService } from 'src/app/shared/services/destroy.service';
 })
 export class InputComponent {
   searchControl = new FormControl('');
+  @Input() placeholder!: string;
   @Output() searchEvent = new EventEmitter<{ search: string }>();
-  constructor(
-    private formBuilder: FormBuilder,
-    private destroyService: DestroyService
-  ) {}
+  constructor(private destroyService: DestroyService) {}
   ngOnInit() {
     this.searchControl.valueChanges
       .pipe(
@@ -27,9 +25,11 @@ export class InputComponent {
       .subscribe();
   }
   clear() {
-    this.searchControl = this.formBuilder.control('');
+    this.searchControl.setValue('');
+    this.searchEvent.emit({ search: '' });
   }
   ngOnDestroy() {
+    this.searchControl.setValue('');
     this.destroyService.destroySubscriptions();
   }
 }

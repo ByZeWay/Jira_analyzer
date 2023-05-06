@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { IProject } from 'src/app/shared/services/projects.service';
 interface IPageInfo {
   currentPage: number;
   pageCount: number;
@@ -10,16 +11,16 @@ interface IPageInfo {
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent {
-  @Input() collection!: any[];
+  @Input() collection: IProject[] = [];
   @Input() pageInfo!: IPageInfo;
   @Output() pageChange = new EventEmitter<number>();
   @Output() itemExistenceClick = new EventEmitter<{
-    id: number;
-    existence: boolean;
+    id: string;
+    active: boolean;
   }>();
 
-  onItemExistenceClick(id: number, existence: boolean) {
-    this.itemExistenceClick.emit({ id, existence });
+  onItemExistenceClick(id: string, active: boolean) {
+    this.itemExistenceClick.emit({ id, active });
   }
   onPageChange(newPage: number) {
     this.pageChange.emit(newPage);

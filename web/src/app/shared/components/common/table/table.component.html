@@ -7,7 +7,7 @@
     </tr>
   </thead>
   <hr />
-  <tbody class="table_body">
+  <tbody class="table_body" *ngIf="collection">
     <tr
       class="table_item"
       *ngFor="
@@ -29,14 +29,14 @@
       </th>
       <th>
         <button
-          *ngIf="!item.Existence"
-          (click)="onItemExistenceClick(item.Id, !item.Existence)"
+          *ngIf="!item.lead.active"
+          (click)="onItemExistenceClick(item.id, !item.lead.active)"
         >
           Добавить
         </button>
         <button
-          *ngIf="item.Existence"
-          (click)="onItemExistenceClick(item.Id, !item.Existence)"
+          *ngIf="item.lead.active"
+          (click)="onItemExistenceClick(item.id, !item.lead.active)"
         >
           Удалить
         </button>

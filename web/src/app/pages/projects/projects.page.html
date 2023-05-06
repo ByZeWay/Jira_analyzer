@@ -1,11 +1,27 @@
 <div class="container">
   <h1>Projects</h1>
-  <app-input (searchEvent)="searchChanged($event)"></app-input>
+  <div class="search-bar" *ngIf="searchMode==='name' ">
+    <app-input
+      (searchEvent)="onSearchNameChange($event)"
+      placeholder="Search by name"
+    ></app-input>
+
+    <button (click)="onSearchButtonClick()">Искать по ключу</button>
+  </div>
+  <div class="search-bar" *ngIf="searchMode==='key' ">
+    <app-input
+      (searchEvent)="onSearchKeyChange($event)"
+      placeholder="Search by key"
+    ></app-input>
+
+    <button (click)="onSearchButtonClick()">Искать по имени</button>
+  </div>
+
   <app-table
-    *ngIf="projResponse"
-    [collection]="projResponse.Projects"
-    [pageInfo]="projResponse.PageInfo"
-    (pageChange)="pageChanged($event)"
-    (itemExistenceClick)="itemExistenceClicked($event)"
+    *ngIf="projectsResponse"
+    [collection]="projectsResponse.Projects"
+    [pageInfo]="projectsResponse.PageInfo"
+    (pageChange)="onPageChange($event)"
+    (itemExistenceClick)="onItemExistenceClick($event)"
   ></app-table>
 </div>

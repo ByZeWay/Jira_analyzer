@@ -1,6 +1,10 @@
 import { DestroyService } from 'src/app/shared/services/destroy.service';
 import { takeUntil } from 'rxjs';
-import { ProjectsService } from './../../shared/services/projects.service';
+import {
+  IProject,
+  IProjectsResponse,
+  ProjectsService,
+} from './../../shared/services/projects.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
@@ -10,53 +14,86 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
   providers: [DestroyService],
 })
 export class ProjectsPage implements OnInit, OnDestroy {
-  projResponse!: any;
-  search = '';
-  limit = 10;
-  page = 1;
+  projectsResponse!: IProjectsResponse;
+  searchName = '';
+  searchKey = '';
+  searchMode: 'key' | 'name' = 'name';
+  itemsPerPage = 10;
+  currentPage = 1;
+
   constructor(
     private projectService: ProjectsService,
     private destroyService: DestroyService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getProjects();
   }
-  ngOnDestroy() {
+
+  ngOnDestroy(): void {
     this.destroyService.destroySubscriptions();
   }
-  getProjects() {
-    console.log(this.limit, this.page, this.search);
+
+  private createSearchOptions(): {
+    limit: number;
+    page: number;
+    name: string;
+    key: string;
+  } {
+    return {
+      limit: this.itemsPerPage,
+      page: this.currentPage,
+      name: this.searchName,
+      key: this.searchKey,
+    };
+  }
+
+  getProjects(): void {
     this.projectService
-      .getProjects({ limit: this.limit, page: this.page, search: this.search })
+      .getProjects(this.createSearchOptions())
       .pipe(takeUntil(this.destroyService.destory$$))
-      .subscribe((res: any) => {
-        console.log(res);
-        this.projResponse = res;
+      .subscribe((response: IProjectsResponse) => {
+        this.projectsResponse = response;
       });
   }
 
-  searchChanged({ search }: { search: string }) {
-    this.search = search;
+  onSearchNameChange({ search }: { search: string }): void {
+    this.searchName = search;
+    this.searchKey = '';
     this.getProjects();
   }
-  pageChanged(newPage: number) {
-    this.page = newPage;
+
+  onSearchKeyChange({ search }: { search: string }): void {
+    this.searchKey = search;
+    this.searchName = '';
     this.getProjects();
   }
-  itemExistenceClicked({ id, existence }: { id: number; existence: boolean }) {
-    const newData = this.projResponse.Projects.map((project: IProject) => {
-      return project.Id === id ? { ...project, Existence: existence } : project;
+
+  onSearchButtonClick(): void {
+    this.searchName = '';
+    this.searchKey = '';
+    this.currentPage = 1;
+
+    this.projectService
+      .getProjects(this.createSearchOptions())
+      .pipe(takeUntil(this.destroyService.destory$$))
+      .subscribe((response: IProjectsResponse) => {
+        this.projectsResponse = response;
+        this.searchMode = this.searchMode === 'key' ? 'name' : 'key';
+      });
+  }
+
+  onPageChange(newPage: number): void {
+    this.currentPage = newPage;
+    this.getProjects();
+  }
+
+  onItemExistenceClick({ id, active }: { id: string; active: boolean }): void {
+    const newData = this.projectsResponse.Projects.map((project: IProject) => {
+      return project.id === id
+        ? { ...project, lead: { ...project.lead, active } }
+        : project;
     });
-
-    this.projResponse.Projects = newData;
+    this.projectsResponse.Projects = newData;
   }
-}
-
-interface IProject {
-  Id: number;
-  Key: string;
-  Name: string;
-  Url: string;
-  Existence: boolean;
 }

@@ -1,5 +1,5 @@
 <div class="group">
-  <input type="text" [formControl]="searchControl" placeholder="Search" />
+  <input type="text" [formControl]="searchControl" placeholder="{{placeholder}}" />
   <button
     class="button"
     [ngStyle]="{ visibility: searchControl.value ? 'initial' : 'hidden' }"
