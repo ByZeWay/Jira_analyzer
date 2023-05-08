@@ -63,26 +63,6 @@ export class ProjectsPage implements OnInit, OnDestroy {
     this.getProjects();
   }
 
-  onSearchKeyChange({ search }: { search: string }): void {
-    this.searchKey = search;
-    this.searchName = '';
-    this.getProjects();
-  }
-
-  onSearchButtonClick(): void {
-    this.searchName = '';
-    this.searchKey = '';
-    this.currentPage = 1;
-
-    this.projectService
-      .getProjects(this.createSearchOptions())
-      .pipe(takeUntil(this.destroyService.destory$$))
-      .subscribe((response: IProjectsResponse) => {
-        this.projectsResponse = response;
-        this.searchMode = this.searchMode === 'key' ? 'name' : 'key';
-      });
-  }
-
   onPageChange(newPage: number): void {
     this.currentPage = newPage;
     this.getProjects();

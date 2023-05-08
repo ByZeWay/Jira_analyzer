@@ -4,23 +4,4 @@ h1 {
 .container {
   gap: 50px;
 }
-.search-bar {
-  display: flex;
-  width: 60%;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  :first-child {
-    flex: 3;
-  }
-  :last-child {
-    flex: 1;
-    padding: 11px 30px;
-  }
-  margin-bottom: 10px;
-}
-@media (max-width: 1100px) {
-  .search-bar {
-    width: 100%;
-  }
-}
+

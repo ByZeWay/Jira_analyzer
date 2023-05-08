@@ -4,6 +4,9 @@
   display: flex;
   border: 1px solid #fff;
   padding: 10px;
+  margin-bottom: 10px;
+  width: 40%;
+  transition: 1s ease-in-out all;
 }
 input {
   width: 80%;
@@ -20,4 +23,9 @@ input[placeholder] {
   border: none;
   padding: 0;
   border: none;
+}
+@media (max-width: 1100px) {
+  .group {
+    width: 100%;
+  }
 }
