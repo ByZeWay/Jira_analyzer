@@ -7,8 +7,10 @@ import (
 	"net/http"
 )
 
+var serverUrl = config.Instance.ConnectorSettings.JiraURL + "project?expand=lead"
+
 func GetAllProjects() []byte {
-	var projectEndpoint = config.Instance.ConnectorSettings.JiraURL + "project?expand=lead"
+	var projectEndpoint = serverUrl
 
 	resp, err := getRespBody(projectEndpoint)
 	if err != nil {

@@ -36,7 +36,10 @@ func getAllProjects(w http.ResponseWriter, r *http.Request) {
 	projectsCount, _ := strconv.Atoi(r.FormValue("limit"))
 	searchParam := r.FormValue("search")
 
-	projects := dataTransformer.ProjectsInBytesToStruct(projectsBytes)
+	projects, err := dataTransformer.ProjectsInBytesToStruct(projectsBytes)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	//filter projects by searchParam
 	projects = utils.SearchProjects(projects, searchParam)
@@ -54,6 +57,12 @@ func getAllProjects(w http.ResponseWriter, r *http.Request) {
 	}
 	projectsPage := projects[(projectsCount * (pageNumber - 1)):lastProjectInArray]
 
+	count := len(projects)
+	if len(projectsPage) == 0 {
+		pageNumber = 1
+		maxPageNumber = 0
+		count = 0
+	}
 	//add pageInfo
 	page := jsonModels.Page{Projects: projectsPage, PageInfo: struct {
 		CurrentPage   int `json:"currentPage" structs:"currentPage"`
@@ -62,13 +71,13 @@ func getAllProjects(w http.ResponseWriter, r *http.Request) {
 	}{
 		CurrentPage:   pageNumber,
 		PageCount:     maxPageNumber,
-		ProjectsCount: len(projects)}}
+		ProjectsCount: count}}
 
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, PATCH")
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
-	err := json.NewEncoder(w).Encode(page)
+	err = json.NewEncoder(w).Encode(page)
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -6,13 +6,13 @@ import (
 	"log"
 )
 
-func ProjectsInBytesToStruct(bytes []byte) []jsonModels.Project {
+func ProjectsInBytesToStruct(bytes []byte) ([]jsonModels.Project, error) {
 	var projects []jsonModels.Project
 	err := json.Unmarshal(bytes, &projects)
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
-	return projects
+	return projects, nil
 }
 
 func IssuesInBytesToStruct(bytes []byte) jsonModels.IssuesSearchResult {
